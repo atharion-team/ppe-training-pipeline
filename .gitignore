@@ -1,0 +1,14 @@
+# Python virtual environment
+.venv/
+__pycache__/
+*.pyc
+
+# Training artifacts
+runs/
+*.pt
+!yolo11*.pt        
+datasets/
+wandb/
+
+# Docs build output
+site/
