@@ -1,4 +1,4 @@
-.PHONY: help docs serve clean download train
+.PHONY: help docs serve clean download train evaluate
 .DEFAULT_GOAL := help
 COMPOSE := docker compose -f  docker/docker-compose.yml
 
@@ -17,6 +17,9 @@ download: ## Download the dataset (CONFIG=<yaml>, ARGS="--force")
 
 train: ## Train the detector (NAME=, ARGS="--imgsz 960")
 	@$(PYTHON) pipeline/train.py --name $(NAME) $(ARGS)
+
+evaluate: ## Evaluate a trained model (NAME=, WEIGHTS=<path> overrides, ARGS="--split val")
+	@$(PYTHON) pipeline/evaluate.py --weights $(if $(WEIGHTS),$(WEIGHTS),runs/train/$(NAME)/weights/best.pt) $(ARGS)
 
 serve: ## Serve docs live at http://localhost:8000
 	@$(COMPOSE) up -d
