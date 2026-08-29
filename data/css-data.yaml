@@ -1,0 +1,45 @@
+# Ultralytics dataset config for the Roboflow Construction Site Safety set (css-data)
+# Fetch the data with:  make download
+
+path: datasets/css-data # path where the dataset will install
+train: train/images
+val: valid/images
+test: test/images
+
+# Roboflow export settings
+# Needs ROBOFLOW_API_KEY in .env or the environment
+roboflow:
+    workspace: roboflow-universe-projects
+    project: construction-site-safety
+    version: 30
+    format: yolo26
+
+# Fallback for anyone without an API key
+download: ""
+
+names:
+    0: Excavator
+    1: Gloves
+    2: Hardhat
+    3: Ladder
+    4: Mask
+    5: NO-Hardhat
+    6: NO-Mask
+    7: NO-Safety Vest
+    8: Person
+    9: SUV
+    10: Safety Cone
+    11: Safety Vest
+    12: bus
+    13: dump truck
+    14: fire hydrant
+    15: machinery
+    16: mini-van
+    17: sedan
+    18: semi
+    19: trailer
+    20: truck
+    21: truck and trailer
+    22: van
+    23: vehicle
+    24: wheel loader

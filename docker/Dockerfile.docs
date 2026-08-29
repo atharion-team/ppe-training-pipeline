@@ -1,0 +1,12 @@
+# Docs image: mkdocs-material + the git-based plugins the stock image lacks
+FROM squidfunk/mkdocs-material
+
+# git binary is needed by the revision-date and authors plugins
+RUN apk add --no-cache git
+
+RUN pip install --no-cache-dir \
+    mkdocs-git-revision-date-localized-plugin \
+    mkdocs-git-authors-plugin
+
+# repo is bind-mounted with a different owner; let git trust it
+RUN git config --global --add safe.directory /docs

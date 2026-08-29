@@ -3,12 +3,25 @@
 __pycache__/
 *.pyc
 
+# Notebooks
+.ipynb_checkpoints/
+
 # Training artifacts
 runs/
 *.pt
-!yolo11*.pt        
 datasets/
 wandb/
+videos/*
+!videos/.gitkeep
 
 # Docs build output
 site/
+
+# Editor and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env

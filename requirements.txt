@@ -1,0 +1,17 @@
+# Python 3.11.9
+# --extra-index-url is required, without it pip pulls CPU-only torch.
+--extra-index-url https://download.pytorch.org/whl/cu121
+
+torch==2.5.1+cu121
+torchvision==0.20.1+cu121
+
+ultralytics>=8.4.60     # YOLO26 checkpoints need this version or newer
+opencv-python>=4.9.0
+pyyaml>=6.0
+jupyter>=1.1.1
+pandas>=2.2             
+roboflow>=1.1           
+wandb>=0.18             # optional, run tracking
+
+# lap>=0.5.12           # ByteTrack association
+# scipy>=1.13           # Hungarian matching
