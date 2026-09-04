@@ -27,8 +27,6 @@ flowchart TD
     end
 
 
-    classDef grey fill:#9e9e9e,stroke:#616161,color:#fff
-    class offline grey
 ```
 
 **Offline (grey box).** Before any camera ever runs, the detector has to exist. Download the labelled dataset, train the detector on it, then evaluate it on images it has not seen to find out how good it actually is. This happens once, or whenever the model is retrained, never for a live frame, and it produces the one thing the runtime half needs: a trained set of weights. See [Detector](detector.md).
