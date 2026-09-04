@@ -1,0 +1,20 @@
+{
+  "associations": "runs/associate/ppe_m_fixed/associations.jsonl",
+  "frames": 781,
+  "tracks_monitored": 83,
+  "events": 36,
+  "by_violation": {
+    "no_vest": 17,
+    "no_hardhat": 19
+  },
+  "undetected_classes": [],
+  "avg_duration_seconds": 12.0,
+  "params": {
+    "window_seconds": 0.5,
+    "present_ratio": 0.5,
+    "on_delay_seconds": 3.0,
+    "off_delay_seconds": 2.0,
+    "cooldown_seconds": 5.0,
+    "track_loss_close_seconds": 3.0
+  }
+}

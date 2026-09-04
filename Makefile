@@ -1,4 +1,4 @@
-.PHONY: help docs serve clean download train evaluate
+.PHONY: help docs serve clean download train evaluate track associate run
 .DEFAULT_GOAL := help
 COMPOSE := docker compose -f  docker/docker-compose.yml
 
@@ -20,6 +20,19 @@ train: ## Train the detector (NAME=, ARGS="--imgsz 960")
 
 evaluate: ## Evaluate a trained model (NAME=, WEIGHTS=<path> overrides, ARGS="--split val")
 	@$(PYTHON) pipeline/evaluate.py --weights $(if $(WEIGHTS),$(WEIGHTS),runs/train/$(NAME)/weights/best.pt) $(ARGS)
+
+track: ## Track persons in a video (NAME=, WEIGHTS=<path> overrides, SOURCE=<path>, ARGS="--show")
+	@$(PYTHON) pipeline/track.py --weights $(if $(WEIGHTS),$(WEIGHTS),runs/train/$(NAME)/weights/best.pt) --source $(SOURCE) $(ARGS)
+
+associate: ## Track + associate PPE to workers (NAME=, WEIGHTS=<path>, SOURCE=<path>, ARGS="--min-containment 0.6")
+	@$(PYTHON) pipeline/associate.py --weights $(if $(WEIGHTS),$(WEIGHTS),runs/train/$(NAME)/weights/best.pt) --source $(SOURCE) $(ARGS)
+
+run: ## Associate then compliance end-to-end (NAME=, SOURCE=<path>, WEIGHTS=<path> overrides, ARGS="--min-containment 0.6" applies to associate only)
+	@$(PYTHON) pipeline/associate.py --weights $(if $(WEIGHTS),$(WEIGHTS),runs/train/$(NAME)/weights/best.pt) --source $(SOURCE) --output runs/associate/$(NAME) $(ARGS)
+	@$(PYTHON) pipeline/compliance.py --associations runs/associate/$(NAME)/associations.jsonl --output runs/compliance/$(NAME)
+	@echo ""
+	@echo "associate output: runs/associate/$(NAME)/ (associations.jsonl, annotated video, associate_summary.json)"
+	@echo "compliance output: runs/compliance/$(NAME)/ (events.jsonl, compliance_summary.json)"
 
 serve: ## Serve docs live at http://localhost:8000
 	@$(COMPOSE) up -d

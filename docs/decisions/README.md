@@ -2,7 +2,7 @@
 
 An Architecture Decision Record captures one significant, hard-to-reverse choice: the context that forced it, what was decided, and the consequences accepted. One decision per record. Records are append-only, a choice that changes is superseded, not rewritten.
 
-!!! tip "Starting a new ADR"
+!!! tip "Starting a New ADR"
     Copy `template.md` to `NNNN-short-slug.md` with the next zero-padded number. Then register it in **two** places or it will not appear: the log table below, and `nav:` in `mkdocs.yml`.
 
 ## Log
@@ -19,7 +19,7 @@ An Architecture Decision Record captures one significant, hard-to-reverse choice
 - Allowed status values: ==Proposed==, ==Under Review==, ==Accepted==, ==Rejected==, ==Superseded==, ==Deprecated==
 - Keep the executive summary current with the decision's real state
 
-## Status values
+## Status Values
 
 | Status | Meaning |
 |---|---|

@@ -12,6 +12,6 @@ jupyter>=1.1.1
 pandas>=2.2             
 roboflow>=1.1           
 wandb>=0.18             # optional, run tracking
-
-# lap>=0.5.12           # ByteTrack association
-# scipy>=1.13           # Hungarian matching
+lap>=0.5.12             # ByteTrack association
+scipy>=1.13             # Hungarian matching
+imageio-ffmpeg>=0.5     # re-encode detect/track/associate output to H.264

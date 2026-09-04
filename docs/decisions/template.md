@@ -36,7 +36,7 @@ so the ADR can evolve, each with its own status:}
 ### ADD_2: {decision} [status]
 ...
 
-??? note "Options considered (optional)"
+??? note "Options Considered (Optional)"
     Only when two or more real alternatives were weighed. Delete this block if there
     was one obvious path.
 
@@ -45,7 +45,7 @@ so the ADR can evolve, each with its own status:}
     - Pro: {...}
     - Con: {...}
 
-## Additional information (optional)
+## Additional Information (Optional)
 
 {Links to related ADRs, docs, or discussions. Who was involved. What would trigger
 revisiting this decision.}

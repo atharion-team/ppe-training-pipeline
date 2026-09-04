@@ -1,0 +1,39 @@
+# PPE vocabulary, one definition, everything else conforms to it.
+#
+# Read by:
+#   detector            which classes render as violations
+#   association         `region` picks the body zone in `zones` to match  in; `min_containment` gates whether a match counts
+#   compliance          `violation` keys the per-worker state; `compliance` section tunes the smoothing/hysteresis/dedup thresholds
+
+subject: Person
+
+ppe:
+    Hardhat:
+        region: head
+        violation: no_hardhat
+    Safety Vest:
+        region: torso
+        violation: no_vest
+
+negative:
+    NO-Hardhat: no_hardhat
+    NO-Safety Vest: no_vest
+
+ignore:
+    - Safety Cone
+    - machinery
+    - vehicle
+
+zones:
+    head: [0.00, 0.25]
+    torso: [0.15, 0.55]
+
+min_containment: 0.5
+
+compliance:
+    window_seconds: 0.5
+    present_ratio: 0.5
+    on_delay_seconds: 3.0
+    off_delay_seconds: 2.0
+    cooldown_seconds: 5.0
+    track_loss_close_seconds: 3.0

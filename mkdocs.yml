@@ -95,6 +95,7 @@ nav:
     - Knowledge:
           - knowledge/index.md
           - Object detection: knowledge/object-detection.md
+          - Precision, recall, F1: knowledge/precision-recall.md
           - YOLO: knowledge/yolo.md
           - Ultralytics: knowledge/ultralytics.md
           - Multi-object tracking: knowledge/multi-object-tracking.md

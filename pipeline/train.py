@@ -96,7 +96,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--epochs", type=int, default=100)
     p.add_argument("--imgsz", type=int, default=640)
     p.add_argument("--batch", type=int, default=24, help="-1 auto-fits to available VRAM, but conservatively")
-    p.add_argument("--device", default=None, help='"0" for the first GPU, "cpu" to force CPU')
+    p.add_argument("--device", default="0", help='"0" for the first GPU, "cpu" to force CPU')
     p.add_argument("--workers", type=int, default=8, help="use 0 if the Windows dataloader hangs")
     p.add_argument("--project", default=str(DEFAULT_PROJECT))
     p.add_argument("--name", default="ppe")
