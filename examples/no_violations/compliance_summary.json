@@ -1,15 +1,14 @@
 {
-  "associations": "runs/associate/offline_demo/associations.jsonl",
-  "frames": 781,
-  "tracks_monitored": 83,
-  "events": 36,
-  "snapshots": 36,
+  "associations": "runs/associate/ppe_m/associations.jsonl",
+  "frames": 530,
+  "tracks_monitored": 10,
+  "events": 1,
+  "snapshots": 1,
   "by_violation": {
-    "no_vest": 17,
-    "no_hardhat": 19
+    "no_vest": 1
   },
   "undetected_classes": [],
-  "avg_duration_seconds": 12.0,
+  "avg_duration_seconds": 5.53,
   "params": {
     "window_seconds": 0.5,
     "present_ratio": 0.5,

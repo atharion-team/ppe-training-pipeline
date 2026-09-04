@@ -110,6 +110,15 @@ The invariant: ==at most one open event per `(track_id, violation)`==. `open_or_
 !!! tip "Tune Against Event-Level Metrics, Not mAP"
     Label a few clips with ground-truth violation intervals and measure false alarms per hour and missed-violation rate. mAP says nothing about whether the events are right.
 
+## Snapshots
+
+Once `events` is finalized, a second, separate pass grabs one evidence JPEG per event: `save_snapshot()` seeks the source video (read from `associate_summary.json`'s `source` field, the same file `resolve_known_classes()` already reads) to the event's `start` timestamp and writes the nearest frame to `runs/compliance/<name>/snapshots/event_<id>.jpg`. This is deliberately a separate pass over the finished `events` list, not something taken frame-by-frame inside `advance()`, an event's final `start` isn't known until the on-delay actually elapses, so there is nothing to snapshot yet while the frame loop is still running.
+
+It's best-effort, not required output: if the source video isn't found at the path recorded in `associate_summary.json`, or a particular seek fails, that event's `snapshot` field is left `null` and a warning prints, the run still completes normally. Pass `--no-snapshots` to skip this pass entirely.
+
+!!! info "Snapshot Accuracy"
+    Seeking a compressed video by timestamp can land on the nearest keyframe rather than the exact frame. Close enough for a dashboard thumbnail, not frame-perfect evidence.
+
 ## Running It
 
 === "Python"
@@ -126,7 +135,7 @@ The invariant: ==at most one open event per `(track_id, violation)`==. `open_or_
 
     `make run` chains `associate.py` then `compliance.py` for you, waits for association to finish before compliance starts, and prints both output paths. Use the bare `python pipeline/compliance.py` form instead when re-tuning thresholds against association output you already have, no need to re-run detection and tracking just to change `--on-delay-seconds`.
 
-Reads `associate.py`'s per-frame output, writes `events.jsonl` (one event per line) and `compliance_summary.json` (counts by violation type, average duration, the resolved thresholds actually used, `undetected_classes`) to `runs/compliance/`. Watch the console for the two warnings this module can print: an unknown-class skip (see the gate above) and the known-classes fallback notice.
+Reads `associate.py`'s per-frame output, writes `events.jsonl` (one event per line), `compliance_summary.json` (counts by violation type, average duration, the resolved thresholds actually used, `undetected_classes`, a `snapshots` count), and a `snapshots/` folder of evidence JPEGs to `runs/compliance/`. Watch the console for the warnings this module can print: an unknown-class skip (see the gate above), the known-classes fallback notice, and a missing-source-video or failed-seek notice from the snapshot pass.
 
 !!! info "Which Signal Drives a Violation"
     Positive-PPE absence is the primary signal a worker is judged non-compliant on, per [ADR 0001](../decisions/0001-positive-only-detection.md)'s decided direction. A confirmed `NO-Hardhat` box is recorded by `associate.py` but is not currently wired into this decision either way, which signal compliance ultimately trusts is still explicitly left to event-level evaluation, not code.

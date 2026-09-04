@@ -61,7 +61,7 @@ flowchart LR
 
 ## What's Still Open
 
-- **Emit's transport.** Today Emit is a file drop, `compliance.py` writes `events.jsonl` directly. Delivery beyond that, a queue, an HTTP callback, evidence snapshots, retention/privacy policy, is undecided. See [schema](pipeline/schemas.md).
+- **Emit's transport.** Today Emit is a file drop, `compliance.py` writes `events.jsonl` and one evidence JPEG per event directly to disk. Delivery beyond that, a queue, an HTTP callback, retention/privacy policy, is undecided. See [schema](pipeline/schemas.md).
 - **Live/real-time mode.** The pipeline runs offline today: a finished video in, a finished `events.jsonl` out, timestamps relative to that video file. A live camera feed needs wall-clock timestamps and `compliance.py` restructured to emit incrementally rather than after a full pass. See [schema](pipeline/schemas.md#offline-upload-workflow).
 - **The detector's training data.** `data/vocabulary.yaml` already matches the team's own PPE classes; the currently trained weights do not yet, they're from an earlier, broader class set. See [detector](pipeline/detector.md).
 - **Every tuning threshold.** Association's zone geometry and minimum containment score, and every compliance timing threshold, are reasoned starting values, not measured against labelled ground truth yet. See [tracking](pipeline/tracking.md) and [compliance](pipeline/compliance.md).

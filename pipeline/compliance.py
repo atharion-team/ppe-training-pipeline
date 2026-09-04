@@ -33,6 +33,8 @@ import sys
 from collections import deque
 from pathlib import Path
 
+import cv2
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:  # allows `python pipeline/compliance.py` direct invocation
     sys.path.insert(0, str(REPO_ROOT))
@@ -50,26 +52,40 @@ COOLDOWN_SECONDS = 5.0
 TRACK_LOSS_CLOSE_SECONDS = 3.0
 
 
-def resolve_known_classes(associations_path: Path, ordered: list[dict], violation_of: dict[str, str]) -> set[str]:
-    """Which positive PPE classes to run absence-judgement on. Prefers
-    associate.py's own record of what the detector can actually emit
-    (associate_summary.json's known_ppe_classes, written next to
-    associations.jsonl), since a class never positively seen this session
-    is ambiguous: either the model doesn't know it, or every worker is
-    genuinely violating it, and only the model's own class list can tell
-    those apart. Falls back to session-observed presence, with a warning,
-    only when no summary is available (e.g. a hand-built associations.jsonl)."""
+def load_associate_summary(associations_path: Path) -> dict:
+    """associate_summary.json sitting next to associations.jsonl"""
     summary_path = associations_path.parent / "associate_summary.json"
     if summary_path.exists():
-        summary = json.loads(summary_path.read_text(encoding="utf-8"))
-        known = summary.get("known_ppe_classes")
-        if known is not None:
-            return set(known)
+        return json.loads(summary_path.read_text(encoding="utf-8"))
+    return {}
+
+
+def resolve_known_classes(summary: dict, ordered: list[dict], violation_of: dict[str, str]) -> set[str]:
+    """Which positive PPE classes to run absence-judgement on. Prefers
+    associate.py's own record of what the detector can actually emit
+    (summary's known_ppe_classes), since a class never positively seen this
+    session is ambiguous: either the model doesn't know it, or every worker
+    is genuinely violating it, and only the model's own class list can tell
+    those apart. Falls back to session-observed presence, with a warning,
+    only when the summary has no known_ppe_classes to consult."""
+    known = summary.get("known_ppe_classes")
+    if known is not None:
+        return set(known)
     print(
-        f"warning: no known_ppe_classes in {summary_path.name} next to {associations_path.name}, falling back to "
-        f"session-observed presence (can't tell a class the model never learned from one everyone is violating)"
+        "warning: no known_ppe_classes in associate_summary.json, falling back to session-observed presence "
+        "(can't tell a class the model never learned from one everyone is violating)"
     )
     return {name for f in ordered for (_, name) in f["assoc"] if name in violation_of}
+
+
+def save_snapshot(capture: cv2.VideoCapture, timestamp: float, out_path: Path) -> bool:
+    """Grab the frame nearest timestamp seconds into an already-open capture and write it to out_path as a JPEG. """
+    capture.set(cv2.CAP_PROP_POS_MSEC, timestamp * 1000)
+    ok, frame = capture.read()
+    if not ok:
+        return False
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    return bool(cv2.imwrite(str(out_path), frame))
 
 
 def load_records(path: Path) -> dict[int, dict]:
@@ -97,6 +113,7 @@ def compliance(
     cooldown_seconds: float | None = None,
     track_loss_close_seconds: float | None = None,
     output: str | Path = DEFAULT_OUTPUT,
+    snapshots: bool = True,
 ) -> dict:
     """Run the smoothing/hysteresis/dedup pipeline over one associations.jsonl.
     """
@@ -120,7 +137,8 @@ def compliance(
     frames = load_records(Path(associations))
     ordered = [frames[f] for f in sorted(frames)]
 
-    known_classes = resolve_known_classes(Path(associations), ordered, violation_of)
+    associate_summary = load_associate_summary(Path(associations))
+    known_classes = resolve_known_classes(associate_summary, ordered, violation_of)
     undetected = [name for name in violation_of if name not in known_classes]
     if undetected:
         print(f"warning: not a known class for this detector, skipping absence judgement for: {undetected}")
@@ -145,7 +163,7 @@ def compliance(
         next_event_id[0] += 1
         event = {
             "event_id": next_event_id[0], "track_id": track_id, "violation": violation,
-            "start": round(start_ts, 3), "end": None, "status": "open", "reopens": 0,
+            "start": round(start_ts, 3), "end": None, "status": "open", "reopens": 0, "snapshot": None,
         }
         events.append(event)
         return event
@@ -214,6 +232,27 @@ def compliance(
 
     out_dir = Path(output)
     out_dir.mkdir(parents=True, exist_ok=True)
+
+    snapshots_taken = 0
+    if snapshots and events:
+        source_video = associate_summary.get("source")
+        if not source_video or not Path(source_video).exists():
+            print(f"warning: source video not found ({source_video!r}), skipping snapshots")
+        else:
+            capture = cv2.VideoCapture(source_video)
+            if not capture.isOpened():
+                print(f"warning: could not open source video {source_video}, skipping snapshots")
+            else:
+                snap_dir = out_dir / "snapshots"
+                for e in events:
+                    snap_path = snap_dir / f"event_{e['event_id']}.jpg"
+                    if save_snapshot(capture, e["start"], snap_path):
+                        e["snapshot"] = str(snap_path)
+                        snapshots_taken += 1
+                    else:
+                        print(f"warning: could not grab a snapshot for event {e['event_id']} at {e['start']}s")
+                capture.release()
+
     events_path = out_dir / "events.jsonl"
     events_path.write_text("\n".join(json.dumps(e) for e in events) + ("\n" if events else ""), encoding="utf-8")
 
@@ -229,6 +268,7 @@ def compliance(
         "frames": len(ordered),
         "tracks_monitored": len({k[0] for k in states}),
         "events": len(events),
+        "snapshots": snapshots_taken,
         "by_violation": by_violation,
         "undetected_classes": undetected,
         "avg_duration_seconds": round(sum(durations) / len(durations), 2) if durations else None,
@@ -241,7 +281,7 @@ def compliance(
     summary_path = out_dir / "compliance_summary.json"
     summary_path.write_text(json.dumps(summary, indent=2), encoding="utf-8")
 
-    print(f"{len(ordered)} frames, {summary['tracks_monitored']} tracks monitored, {len(events)} events")
+    print(f"{len(ordered)} frames, {summary['tracks_monitored']} tracks monitored, {len(events)} events, {snapshots_taken} snapshots")
     print(f"by violation: {by_violation}")
     print(f"\nsummary: {summary_path}")
     print(f"events:  {events_path}")
@@ -277,6 +317,10 @@ def parse_args() -> argparse.Namespace:
         help="overrides data/vocabulary.yaml's compliance.track_loss_close_seconds; omit to use the vocabulary's value",
     )
     p.add_argument("--output", default=str(DEFAULT_OUTPUT))
+    p.add_argument(
+        "--no-snapshots", action="store_false", dest="snapshots",
+        help="skip saving an evidence JPEG per event even if the source video is available",
+    )
     return p.parse_args()
 
 

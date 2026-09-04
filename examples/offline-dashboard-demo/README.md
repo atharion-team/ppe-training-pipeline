@@ -9,7 +9,8 @@ A real, end-to-end example of this pipeline's output: one video in, one `events.
 | `source_video.mp4` | The original, unprocessed clip (26s, 1080x1920, 30fps) |
 | `annotated_video.mp4` | Same clip with tracking + association overlays: `id N` labels per worker, head/torso zone outlines, PPE boxes color-coded (green = confirmed worn, red = confirmed violation, gray = detected but not confidently matched to a worker). Useful for visually understanding what produced the events below, not meant for the dashboard itself. |
 | `events.jsonl` | The actual schema output, one JSON object per line. This is what the dashboard consumes. |
-| `compliance_summary.json` | Aggregate stats for this run: 36 events (19 `no_hardhat`, 17 `no_vest`), average duration 12.0s, and the exact thresholds used (below). |
+| `compliance_summary.json` | Aggregate stats for this run: 36 events (19 `no_hardhat`, 17 `no_vest`), average duration 12.0s, 36 snapshots, and the exact thresholds used (below). |
+| `snapshots/` | One evidence JPEG per event, `event_<id>.jpg`, grabbed from `source_video.mp4` at that event's `start` timestamp. Every `events.jsonl` row's `snapshot` field points here with a path relative to this folder. |
 
 
 ## How this was generated

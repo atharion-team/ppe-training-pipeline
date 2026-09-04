@@ -1,36 +1,36 @@
-{"event_id": 1, "track_id": 6, "violation": "no_vest", "start": 0.0, "end": 9.776, "status": "closed_track_lost", "reopens": 0}
-{"event_id": 2, "track_id": 7, "violation": "no_hardhat", "start": 0.0, "end": 9.81, "status": "closed_track_lost", "reopens": 0}
-{"event_id": 3, "track_id": 7, "violation": "no_vest", "start": 0.0, "end": 9.81, "status": "closed_track_lost", "reopens": 0}
-{"event_id": 4, "track_id": 10, "violation": "no_hardhat", "start": 0.367, "end": 23.624, "status": "closed_normal", "reopens": 0}
-{"event_id": 5, "track_id": 22, "violation": "no_hardhat", "start": 0.734, "end": 6.306, "status": "closed_normal", "reopens": 0}
-{"event_id": 6, "track_id": 22, "violation": "no_vest", "start": 0.734, "end": 9.543, "status": "closed_track_lost", "reopens": 0}
-{"event_id": 7, "track_id": 31, "violation": "no_hardhat", "start": 1.568, "end": 15.749, "status": "closed_track_lost", "reopens": 0}
-{"event_id": 8, "track_id": 31, "violation": "no_vest", "start": 1.568, "end": 12.112, "status": "closed_normal", "reopens": 0}
-{"event_id": 9, "track_id": 30, "violation": "no_hardhat", "start": 1.435, "end": 14.781, "status": "closed_track_lost", "reopens": 0}
-{"event_id": 10, "track_id": 29, "violation": "no_hardhat", "start": 1.401, "end": 26.026, "status": "closed_end_of_video", "reopens": 0}
-{"event_id": 11, "track_id": 29, "violation": "no_vest", "start": 1.401, "end": 26.026, "status": "closed_end_of_video", "reopens": 0}
-{"event_id": 12, "track_id": 37, "violation": "no_hardhat", "start": 2.169, "end": 24.258, "status": "closed_track_lost", "reopens": 1}
-{"event_id": 13, "track_id": 2, "violation": "no_vest", "start": 2.502, "end": 22.89, "status": "closed_track_lost", "reopens": 0}
-{"event_id": 14, "track_id": 41, "violation": "no_hardhat", "start": 3.003, "end": 10.444, "status": "closed_track_lost", "reopens": 0}
-{"event_id": 15, "track_id": 37, "violation": "no_vest", "start": 3.504, "end": 24.258, "status": "closed_track_lost", "reopens": 0}
-{"event_id": 16, "track_id": 58, "violation": "no_hardhat", "start": 4.071, "end": 26.026, "status": "closed_end_of_video", "reopens": 0}
-{"event_id": 17, "track_id": 58, "violation": "no_vest", "start": 4.071, "end": 26.026, "status": "closed_end_of_video", "reopens": 0}
-{"event_id": 18, "track_id": 69, "violation": "no_hardhat", "start": 5.205, "end": 15.549, "status": "closed_track_lost", "reopens": 0}
-{"event_id": 19, "track_id": 69, "violation": "no_vest", "start": 5.205, "end": 15.549, "status": "closed_track_lost", "reopens": 0}
-{"event_id": 20, "track_id": 86, "violation": "no_hardhat", "start": 7.007, "end": 26.026, "status": "closed_end_of_video", "reopens": 0}
-{"event_id": 21, "track_id": 86, "violation": "no_vest", "start": 7.007, "end": 26.026, "status": "closed_end_of_video", "reopens": 0}
-{"event_id": 22, "track_id": 106, "violation": "no_hardhat", "start": 10.277, "end": 21.188, "status": "closed_track_lost", "reopens": 0}
-{"event_id": 23, "track_id": 124, "violation": "no_hardhat", "start": 12.012, "end": 20.02, "status": "closed_normal", "reopens": 0}
-{"event_id": 24, "track_id": 142, "violation": "no_hardhat", "start": 14.982, "end": 26.026, "status": "closed_end_of_video", "reopens": 0}
-{"event_id": 25, "track_id": 176, "violation": "no_hardhat", "start": 17.15, "end": 26.026, "status": "closed_end_of_video", "reopens": 0}
-{"event_id": 26, "track_id": 176, "violation": "no_vest", "start": 17.15, "end": 26.026, "status": "closed_end_of_video", "reopens": 0}
-{"event_id": 27, "track_id": 142, "violation": "no_vest", "start": 18.552, "end": 26.026, "status": "closed_end_of_video", "reopens": 0}
-{"event_id": 28, "track_id": 175, "violation": "no_hardhat", "start": 17.985, "end": 26.026, "status": "closed_end_of_video", "reopens": 0}
-{"event_id": 29, "track_id": 198, "violation": "no_hardhat", "start": 19.82, "end": 26.026, "status": "closed_end_of_video", "reopens": 0}
-{"event_id": 30, "track_id": 198, "violation": "no_vest", "start": 19.82, "end": 26.026, "status": "closed_end_of_video", "reopens": 0}
-{"event_id": 31, "track_id": 201, "violation": "no_hardhat", "start": 20.354, "end": 26.026, "status": "closed_end_of_video", "reopens": 0}
-{"event_id": 32, "track_id": 201, "violation": "no_vest", "start": 20.354, "end": 26.026, "status": "closed_end_of_video", "reopens": 0}
-{"event_id": 33, "track_id": 205, "violation": "no_hardhat", "start": 21.221, "end": 26.026, "status": "closed_end_of_video", "reopens": 0}
-{"event_id": 34, "track_id": 205, "violation": "no_vest", "start": 21.221, "end": 26.026, "status": "closed_end_of_video", "reopens": 0}
-{"event_id": 35, "track_id": 5, "violation": "no_vest", "start": 22.189, "end": 26.026, "status": "closed_end_of_video", "reopens": 0}
-{"event_id": 36, "track_id": 204, "violation": "no_vest", "start": 22.256, "end": 26.026, "status": "closed_end_of_video", "reopens": 0}
+{"event_id": 1, "track_id": 6, "violation": "no_vest", "start": 0.0, "end": 9.776, "status": "closed_track_lost", "reopens": 0, "snapshot": "snapshots/event_1.jpg"}
+{"event_id": 2, "track_id": 7, "violation": "no_hardhat", "start": 0.0, "end": 9.81, "status": "closed_track_lost", "reopens": 0, "snapshot": "snapshots/event_2.jpg"}
+{"event_id": 3, "track_id": 7, "violation": "no_vest", "start": 0.0, "end": 9.81, "status": "closed_track_lost", "reopens": 0, "snapshot": "snapshots/event_3.jpg"}
+{"event_id": 4, "track_id": 10, "violation": "no_hardhat", "start": 0.367, "end": 23.624, "status": "closed_normal", "reopens": 0, "snapshot": "snapshots/event_4.jpg"}
+{"event_id": 5, "track_id": 22, "violation": "no_hardhat", "start": 0.734, "end": 6.306, "status": "closed_normal", "reopens": 0, "snapshot": "snapshots/event_5.jpg"}
+{"event_id": 6, "track_id": 22, "violation": "no_vest", "start": 0.734, "end": 9.543, "status": "closed_track_lost", "reopens": 0, "snapshot": "snapshots/event_6.jpg"}
+{"event_id": 7, "track_id": 31, "violation": "no_hardhat", "start": 1.568, "end": 15.749, "status": "closed_track_lost", "reopens": 0, "snapshot": "snapshots/event_7.jpg"}
+{"event_id": 8, "track_id": 31, "violation": "no_vest", "start": 1.568, "end": 12.112, "status": "closed_normal", "reopens": 0, "snapshot": "snapshots/event_8.jpg"}
+{"event_id": 9, "track_id": 30, "violation": "no_hardhat", "start": 1.435, "end": 14.781, "status": "closed_track_lost", "reopens": 0, "snapshot": "snapshots/event_9.jpg"}
+{"event_id": 10, "track_id": 29, "violation": "no_hardhat", "start": 1.401, "end": 26.026, "status": "closed_end_of_video", "reopens": 0, "snapshot": "snapshots/event_10.jpg"}
+{"event_id": 11, "track_id": 29, "violation": "no_vest", "start": 1.401, "end": 26.026, "status": "closed_end_of_video", "reopens": 0, "snapshot": "snapshots/event_11.jpg"}
+{"event_id": 12, "track_id": 37, "violation": "no_hardhat", "start": 2.169, "end": 24.258, "status": "closed_track_lost", "reopens": 1, "snapshot": "snapshots/event_12.jpg"}
+{"event_id": 13, "track_id": 2, "violation": "no_vest", "start": 2.502, "end": 22.89, "status": "closed_track_lost", "reopens": 0, "snapshot": "snapshots/event_13.jpg"}
+{"event_id": 14, "track_id": 41, "violation": "no_hardhat", "start": 3.003, "end": 10.444, "status": "closed_track_lost", "reopens": 0, "snapshot": "snapshots/event_14.jpg"}
+{"event_id": 15, "track_id": 37, "violation": "no_vest", "start": 3.504, "end": 24.258, "status": "closed_track_lost", "reopens": 0, "snapshot": "snapshots/event_15.jpg"}
+{"event_id": 16, "track_id": 58, "violation": "no_hardhat", "start": 4.071, "end": 26.026, "status": "closed_end_of_video", "reopens": 0, "snapshot": "snapshots/event_16.jpg"}
+{"event_id": 17, "track_id": 58, "violation": "no_vest", "start": 4.071, "end": 26.026, "status": "closed_end_of_video", "reopens": 0, "snapshot": "snapshots/event_17.jpg"}
+{"event_id": 18, "track_id": 69, "violation": "no_hardhat", "start": 5.205, "end": 15.549, "status": "closed_track_lost", "reopens": 0, "snapshot": "snapshots/event_18.jpg"}
+{"event_id": 19, "track_id": 69, "violation": "no_vest", "start": 5.205, "end": 15.549, "status": "closed_track_lost", "reopens": 0, "snapshot": "snapshots/event_19.jpg"}
+{"event_id": 20, "track_id": 86, "violation": "no_hardhat", "start": 7.007, "end": 26.026, "status": "closed_end_of_video", "reopens": 0, "snapshot": "snapshots/event_20.jpg"}
+{"event_id": 21, "track_id": 86, "violation": "no_vest", "start": 7.007, "end": 26.026, "status": "closed_end_of_video", "reopens": 0, "snapshot": "snapshots/event_21.jpg"}
+{"event_id": 22, "track_id": 106, "violation": "no_hardhat", "start": 10.277, "end": 21.188, "status": "closed_track_lost", "reopens": 0, "snapshot": "snapshots/event_22.jpg"}
+{"event_id": 23, "track_id": 124, "violation": "no_hardhat", "start": 12.012, "end": 20.02, "status": "closed_normal", "reopens": 0, "snapshot": "snapshots/event_23.jpg"}
+{"event_id": 24, "track_id": 142, "violation": "no_hardhat", "start": 14.982, "end": 26.026, "status": "closed_end_of_video", "reopens": 0, "snapshot": "snapshots/event_24.jpg"}
+{"event_id": 25, "track_id": 176, "violation": "no_hardhat", "start": 17.15, "end": 26.026, "status": "closed_end_of_video", "reopens": 0, "snapshot": "snapshots/event_25.jpg"}
+{"event_id": 26, "track_id": 176, "violation": "no_vest", "start": 17.15, "end": 26.026, "status": "closed_end_of_video", "reopens": 0, "snapshot": "snapshots/event_26.jpg"}
+{"event_id": 27, "track_id": 142, "violation": "no_vest", "start": 18.552, "end": 26.026, "status": "closed_end_of_video", "reopens": 0, "snapshot": "snapshots/event_27.jpg"}
+{"event_id": 28, "track_id": 175, "violation": "no_hardhat", "start": 17.985, "end": 26.026, "status": "closed_end_of_video", "reopens": 0, "snapshot": "snapshots/event_28.jpg"}
+{"event_id": 29, "track_id": 198, "violation": "no_hardhat", "start": 19.82, "end": 26.026, "status": "closed_end_of_video", "reopens": 0, "snapshot": "snapshots/event_29.jpg"}
+{"event_id": 30, "track_id": 198, "violation": "no_vest", "start": 19.82, "end": 26.026, "status": "closed_end_of_video", "reopens": 0, "snapshot": "snapshots/event_30.jpg"}
+{"event_id": 31, "track_id": 201, "violation": "no_hardhat", "start": 20.354, "end": 26.026, "status": "closed_end_of_video", "reopens": 0, "snapshot": "snapshots/event_31.jpg"}
+{"event_id": 32, "track_id": 201, "violation": "no_vest", "start": 20.354, "end": 26.026, "status": "closed_end_of_video", "reopens": 0, "snapshot": "snapshots/event_32.jpg"}
+{"event_id": 33, "track_id": 205, "violation": "no_hardhat", "start": 21.221, "end": 26.026, "status": "closed_end_of_video", "reopens": 0, "snapshot": "snapshots/event_33.jpg"}
+{"event_id": 34, "track_id": 205, "violation": "no_vest", "start": 21.221, "end": 26.026, "status": "closed_end_of_video", "reopens": 0, "snapshot": "snapshots/event_34.jpg"}
+{"event_id": 35, "track_id": 5, "violation": "no_vest", "start": 22.189, "end": 26.026, "status": "closed_end_of_video", "reopens": 0, "snapshot": "snapshots/event_35.jpg"}
+{"event_id": 36, "track_id": 204, "violation": "no_vest", "start": 22.256, "end": 26.026, "status": "closed_end_of_video", "reopens": 0, "snapshot": "snapshots/event_36.jpg"}
